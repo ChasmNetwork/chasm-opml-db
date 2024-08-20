@@ -1,0 +1,20 @@
+{
+  "name": "chasm-opml-db",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "nodejs": "ts-node script/seed_db.ts",
+    "python": "python script/query_data.py"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@chromia/ft4": "^1.0.0",
+    "dotenv": "^16.4.5",
+    "postchain-client": "^1.17.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
+  }
+}

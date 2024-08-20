@@ -1,0 +1,9 @@
+build
+src/lib/*
+.chromia
+
+.env
+logs/
+__pycache__/
+.chroma
+node_modules

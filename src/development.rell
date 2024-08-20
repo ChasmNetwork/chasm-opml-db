@@ -1,0 +1,9 @@
+module;
+
+import main;
+
+// Config
+object owner {
+    mutable prompt_id: integer = 0;
+    mutable address: pubkey = x"031b84c5567b126440995d3ed5aaba0565d71e1834604819ff9c17f5e9d5dd078f";
+}

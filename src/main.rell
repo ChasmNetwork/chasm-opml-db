@@ -1,0 +1,173 @@
+module;
+
+import lib.ft4.utils.{latest_time};
+import development.{owner};
+
+// ================================
+// Entity
+// ================================
+entity prompt_history {
+    prompt_id: integer;
+    key prompt_id;
+    UID: integer; // scout id
+    messages: json; // input json
+    mutable result: json; // output json
+    seed: integer;
+    model: text;
+    provider: text;
+    mutable raw: json;
+    created_at: integer = latest_time();
+}
+
+// ================================
+// Operation
+// ================================
+struct Prompt {
+    UID: integer;
+    messages: json;
+    result: json;
+    seed: integer;
+    model: text;
+    provider: text;
+    raw: json;
+}
+
+struct prompt_dto {
+    prompt_id: integer;
+    UID: integer;
+    messages: json;
+    result: json;
+    seed: integer;
+    model: text;
+    provider: text;
+    raw: json;
+    created_at: integer;
+}
+
+operation add_prompt_history(
+    UID: integer,
+    messages: json,
+    result: json,
+    seed: integer,
+    model: text,
+    provider: text,
+    raw: json,
+) {
+    is_owner();
+    val prompt_id = owner.prompt_id + 1;
+    owner.prompt_id = prompt_id;
+    create prompt_history (
+        prompt_id,
+        UID,
+        messages,
+        result,
+        seed,
+        model,
+        provider,
+        raw,
+    );
+}
+
+operation update_prompt_history(
+    prompt_id: integer,
+    result: json,
+    raw: json,
+) {
+    is_owner();
+    update prompt_history @ { .prompt_id == prompt_id } (
+        result = result,
+        raw = raw,
+    );
+}
+
+operation delete_prompt_history(
+    prompt_id: integer,
+) {
+    is_owner();
+    delete prompt_history @ { .prompt_id == prompt_id };
+}
+
+operation validate_user_with_no_operation() {
+    is_owner();
+}
+
+operation change_owner(new_address: pubkey) {
+    is_owner();
+    owner.address = new_address;
+}
+
+operation batch_delete_prompt_histories(
+    start_time: integer,
+    end_time: integer,
+) {
+    is_owner();
+    val prompt_histories = get_prompt_histories(start_time, end_time, 100);
+    for (p in prompt_histories) {
+        delete prompt_history @ { .prompt_id == p.prompt_id };
+    }
+}
+
+// ================================
+// Query
+// ================================
+query latest_prompt_id() {
+    val latest_prompt = prompt_history @? {}(
+        @sort_desc @omit .created_at,
+        prompt_dto (
+            prompt_id = .prompt_id,
+            UID = .UID,
+            messages = .messages,
+            result = .result,
+            seed = .seed,
+            model = .model,
+            provider = .provider,
+            raw = .raw,
+            created_at = .created_at,
+        )
+    ) offset 0 limit 1;
+    var prompt_id = 0;
+    if (latest_prompt != null) {
+        prompt_id = latest_prompt.prompt_id;
+    }
+    return prompt_id;
+}
+
+query get_prompt_history(
+    prompt_id: integer,
+) {
+    return prompt_history @ {
+        .prompt_id == prompt_id
+    };
+}
+
+query get_prompt_histories(
+    start_time: integer,
+    end_time: integer,
+    n_prompts: integer,
+): list<prompt_dto> {
+    val prompts = prompt_history @* {
+        .created_at > start_time,
+        .created_at < end_time,
+    } (
+        @sort_desc @omit .created_at,
+        prompt_dto (
+            prompt_id = .prompt_id,
+            UID = .UID,
+            messages = .messages,
+            result = .result,
+            seed = .seed,
+            model = .model,
+            provider = .provider,
+            raw = .raw,
+            created_at = .created_at,
+        )
+    ) offset 0 limit n_prompts;
+    return prompts;
+}
+
+// ================================
+// Util
+// ================================
+function is_owner() {
+    require(op_context.is_signer(owner.address), "Only the owner can call this operation");
+}
