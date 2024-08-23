@@ -74,6 +74,15 @@ operation update_prompt_history(
     raw: json,
 ) {
     is_owner();
+    require(
+        prompt_history @? {
+            .prompt_id == prompt_id
+        } != null,
+        "Entity with prompt_id %s not found"
+            .format(
+                prompt_id
+            )
+    );
     update prompt_history @ { .prompt_id == prompt_id } (
         result = result,
         raw = raw,
@@ -84,6 +93,15 @@ operation delete_prompt_history(
     prompt_id: integer,
 ) {
     is_owner();
+    require(
+        prompt_history @? {
+            .prompt_id == prompt_id
+        } != null,
+        "Entity with prompt_id %s not found"
+            .format(
+                prompt_id
+            )
+    );
     delete prompt_history @ { .prompt_id == prompt_id };
 }
 
