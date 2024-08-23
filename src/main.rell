@@ -142,7 +142,7 @@ query latest_prompt_id() {
             raw = .raw,
             created_at = .created_at,
         )
-    ) offset 0 limit 1;
+    ) limit 1;
     var prompt_id = 0;
     if (latest_prompt != null) {
         prompt_id = latest_prompt.prompt_id;
@@ -179,7 +179,7 @@ query get_prompt_histories(
             raw = .raw,
             created_at = .created_at,
         )
-    ) offset 0 limit n_prompts;
+    ) limit n_prompts;
     return prompts;
 }
 
