@@ -98,6 +98,22 @@ export class ChromiaDB {
     )
   }
 
+  async changeOwner(oldOwner: SignatureProvider, newOwner: SignatureProvider) {
+    let tx = await this.client.signTransaction({
+      operations: [
+        {
+          name: "change_owner",
+          args: [newOwner.pubKey],
+        },
+      ],
+      signers: [oldOwner.pubKey, newOwner.pubKey],
+    }, oldOwner);
+    tx = await this.client.signTransaction(tx, newOwner);
+    const result = await this.client.sendTransaction(tx);
+    this.signatureProvider = newOwner;
+    return result;
+  }
+
   // Query
   async getPromptHistory(promptId: number) {
     return this.client.query({
@@ -123,5 +139,13 @@ export class ChromiaDB {
     return this.client.query({
         name: "latest_prompt_id"
     })
+  }
+
+  async getOwner() {
+    const d = await this.client.query({
+      name: "get_owner",
+      args: {},
+    }) as any;
+    return d?.toString("hex");
   }
 }

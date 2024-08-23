@@ -184,6 +184,10 @@ query get_prompt_histories(
     return prompts;
 }
 
+query get_owner() {
+    return owner.address;
+}
+
 // ================================
 // Util
 // ================================
