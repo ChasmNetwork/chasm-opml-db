@@ -111,6 +111,7 @@ operation validate_user_with_no_operation() {
 
 operation change_owner(new_address: pubkey) {
     is_owner();
+    require(op_context.is_signer(new_address), "New owner must sign the transaction");
     owner.address = new_address;
 }
 
