@@ -193,6 +193,7 @@ function test_change_owner() {
     rell.test.tx()
         .op(change_owner(new_address = alice))
         .sign(o_kp)
+        .sign(alice_kp)
         .run();
 
     assert_equals(

@@ -74,6 +74,15 @@ operation update_prompt_history(
     raw: json,
 ) {
     is_owner();
+    require(
+        prompt_history @? {
+            .prompt_id == prompt_id
+        } != null,
+        "Entity with prompt_id %s not found"
+            .format(
+                prompt_id
+            )
+    );
     update prompt_history @ { .prompt_id == prompt_id } (
         result = result,
         raw = raw,
@@ -84,6 +93,15 @@ operation delete_prompt_history(
     prompt_id: integer,
 ) {
     is_owner();
+    require(
+        prompt_history @? {
+            .prompt_id == prompt_id
+        } != null,
+        "Entity with prompt_id %s not found"
+            .format(
+                prompt_id
+            )
+    );
     delete prompt_history @ { .prompt_id == prompt_id };
 }
 
@@ -93,6 +111,7 @@ operation validate_user_with_no_operation() {
 
 operation change_owner(new_address: pubkey) {
     is_owner();
+    require(op_context.is_signer(new_address), "New owner must sign the transaction");
     owner.address = new_address;
 }
 
@@ -124,7 +143,7 @@ query latest_prompt_id() {
             raw = .raw,
             created_at = .created_at,
         )
-    ) offset 0 limit 1;
+    ) limit 1;
     var prompt_id = 0;
     if (latest_prompt != null) {
         prompt_id = latest_prompt.prompt_id;
@@ -161,8 +180,12 @@ query get_prompt_histories(
             raw = .raw,
             created_at = .created_at,
         )
-    ) offset 0 limit n_prompts;
+    ) limit n_prompts;
     return prompts;
+}
+
+query get_owner() {
+    return owner.address;
 }
 
 // ================================
