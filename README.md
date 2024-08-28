@@ -1,6 +1,11 @@
 # Chasm opML Database
 Chasm Database is powered by Chromia for data transparency layer.
 
+## Production Details
+Cluster: [Pink](https://explorer.chromia.com/mainnet/cluster/pink)
+Dapp: [Prompt](https://explorer.chromia.com/mainnet/blockchain/BD8A4A23FD35BF0A711A8D65E94C06E651A286A412663A82AC2240416264C74D)
+BRID: `BD8A4A23FD35BF0A711A8D65E94C06E651A286A412663A82AC2240416264C74D`
+
 ## Prerequisite
 - [Installation Guide](https://docs.chromia.com/getting-started/dev-setup/cli-installation)
 - [IDE Setup](https://docs.chromia.com/getting-started/plugin/vscode-installation)
