@@ -1,6 +1,13 @@
 blockchains:
   prompt:
-    module: development
+    module: production
+deployments:
+  mainnet:
+    brid: x"7E5BE539EF62E48DDA7035867E67734A70833A69D2F162C457282C319AA58AE4" 
+    url: https://system.chromaway.com:7740
+    container: ac6aadecffb0bd523499756876ab80190dec4e92e4e74d2569105831ceb23a11
+    chains:
+      prompt: x"BD8A4A23FD35BF0A711A8D65E94C06E651A286A412663A82AC2240416264C74D"
 libs:
   ft4:
     registry: https://gitlab.com/chromaway/ft4-lib.git

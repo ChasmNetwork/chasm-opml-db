@@ -5,6 +5,5 @@ import main;
 // Config
 object owner {
     mutable prompt_id: integer = 0;
-    // TODO: UPDATE PUBKEY
-    mutable address: pubkey = x"031b84c5567b126440995d3ed5aaba0565d71e1834604819ff9c17f5e9d5dd078f";
+    mutable address: pubkey = x"02D51E7903944F1D7AC39FFF54519F1F7C3BC3FAB853D26583ADDD4A42D2AFF366";
 }

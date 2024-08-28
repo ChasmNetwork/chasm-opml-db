@@ -8,7 +8,7 @@ interface ChromiaDBConfig {
 }
 
 export class ChromiaDB {
-  clientUrl: string;
+  clientUrl: string | string[];
   blockchainIid?: number;
   blockchainRid?: string;
   client: IClient;
