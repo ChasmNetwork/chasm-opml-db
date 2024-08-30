@@ -184,6 +184,29 @@ query get_prompt_histories(
     return prompts;
 }
 
+query get_prompt_histories_by_uid(
+    UID: integer,
+    n_prompts: integer,
+): list<prompt_dto> {
+    val prompts = prompt_history @* {
+        .UID == UID
+    } (
+        @sort_desc @omit .created_at,
+        prompt_dto (
+            prompt_id = .prompt_id,
+            UID = .UID,
+            messages = .messages,
+            result = .result,
+            seed = .seed,
+            model = .model,
+            provider = .provider,
+            raw = .raw,
+            created_at = .created_at,
+        )
+    ) limit n_prompts;
+    return prompts;
+}
+
 query get_owner() {
     return owner.address;
 }

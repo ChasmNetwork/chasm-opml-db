@@ -71,6 +71,14 @@ function test_add_prompt() {
     );
     assert_equals(prompt_history_item.prompt_id, prompt_id);
     assert_equals(prompt_history_item.UID, prompt.UID);
+
+    val prompt_history_by_id = get_prompt_histories_by_uid(
+        UID = prompt.UID,
+        n_prompts = 10
+    );
+    assert_equals(prompt_history_by_id.size(), 1);
+    val p2 = prompt_history_by_id[0];
+    assert_equals(p2.prompt_id, prompt_id);
 }
 
 function test_add_prompt_fail() {

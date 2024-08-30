@@ -116,6 +116,19 @@ export class ChromiaDB {
     return result;
   }
 
+  async batchDeletePromptHistories(
+    startTime: number,
+    endTime: number
+  ) {
+    return this.client.signAndSendUniqueTransaction(
+      {
+          name: "batch_delete_prompt_histories",
+          args: [startTime, endTime],
+      },
+      this.signatureProvider
+  )
+  }
+
   // Query
   async getPromptHistory(promptId: number) {
     return this.client.query({
@@ -132,6 +145,16 @@ export class ChromiaDB {
       args: {
         start_time: startTime,
         end_time: endTime,
+        n_prompts: nPrompts,
+      },
+    });
+  }
+
+  async getPromptHistoriesByUID(UID: number, nPrompts: number) {
+    return this.client.query({
+      name: "get_prompt_histories_by_uid",
+      args: {
+        UID: UID,
         n_prompts: nPrompts,
       },
     });
