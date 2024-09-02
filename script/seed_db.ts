@@ -1,26 +1,10 @@
-import { createClient, newSignatureProvider } from "postchain-client";
-import dotenv from "dotenv";
 import path from "path";
 import fs from "fs";
-import { ChromiaDB } from "./ChromiaDB";
-
-const ENV_PATH = path.join(__dirname, "../.chroma/chasm-test");
-// file exist
-const env = dotenv.config({
-  path: ENV_PATH
-}).parsed!;
-
-if (!env) {
-  throw new Error(`.env file not found at ${ENV_PATH}`);
-}
+import { chromiaClient } from "./client";
 
 async function main() {
   // Setup Client
-  const db = new ChromiaDB({
-    clientUrl: "http://localhost:7740",
-    blockchainIid: 0,
-    signatureProvider: newSignatureProvider({privKey: env.privkey})
-  });
+  const db = chromiaClient;
   await db.init();
 
   const a = await db.getPromptHistories(

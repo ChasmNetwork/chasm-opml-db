@@ -1,4 +1,9 @@
-import { createClient, IClient, SignatureProvider, Transaction } from "postchain-client";
+import {
+  createClient,
+  IClient,
+  SignatureProvider,
+  Transaction,
+} from "postchain-client";
 
 interface ChromiaDBConfig {
   clientUrl: string;
@@ -90,12 +95,12 @@ export class ChromiaDB {
 
   async deletePromptHistory(promptId: number) {
     return this.client.signAndSendUniqueTransaction(
-        {
-            name: "delete_prompt_history",
-            args: [promptId],
-        },
-        this.signatureProvider
-    )
+      {
+        name: "delete_prompt_history",
+        args: [promptId],
+      },
+      this.signatureProvider
+    );
   }
 
   async changeOwner(oldOwner: SignatureProvider, newOwner: SignatureProvider) {
@@ -116,6 +121,16 @@ export class ChromiaDB {
     return result;
   }
 
+  async batchDeletePromptHistories(startTime: number, endTime: number) {
+    return this.client.signAndSendUniqueTransaction(
+      {
+        name: "batch_delete_prompt_histories",
+        args: [startTime, endTime],
+      },
+      this.signatureProvider
+    );
+  }
+
   // Query
   async getPromptHistory(promptId: number) {
     return this.client.query({
@@ -126,7 +141,11 @@ export class ChromiaDB {
     });
   }
 
-  async getPromptHistories(startTime: number, endTime: number, nPrompts: number) {
+  async getPromptHistories(
+    startTime: number,
+    endTime: number,
+    nPrompts: number
+  ) {
     return this.client.query({
       name: "get_prompt_histories",
       args: {
@@ -137,17 +156,27 @@ export class ChromiaDB {
     });
   }
 
+  async getPromptHistoriesByUID(UID: number, nPrompts: number) {
+    return this.client.query({
+      name: "get_prompt_histories_by_uid",
+      args: {
+        UID: UID,
+        n_prompts: nPrompts,
+      },
+    });
+  }
+
   async getLatestPromptId() {
     return this.client.query({
-        name: "latest_prompt_id"
-    })
+      name: "latest_prompt_id",
+    });
   }
 
   async getOwner() {
-    const d = await this.client.query({
+    const d = (await this.client.query({
       name: "get_owner",
       args: {},
-    }) as any;
+    })) as any;
     return d?.toString("hex");
   }
 }
