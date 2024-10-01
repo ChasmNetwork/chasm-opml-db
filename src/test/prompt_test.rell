@@ -16,12 +16,18 @@ val bob = rell.test.pubkeys.bob;
 val bob_kp = rell.test.keypairs.bob;
 val prompt = Prompt(
     UID = 7849,
-    messages = json("[{\"role\":\"system\",\"content\":\"You are a helpful and creative assistant that writes text based on user's given context. Please keep it short and concise within 3 paragraphs.\"},{\"role\":\"user\",\"content\":\"A group of children, dressed as celestial beings, enact a playful retelling of a creation myth in a sun-drenched meadow, their laughter mingling with the chirping of birds.\"}]"),
-    result = json("{\"id\":\"chatcmpl-60756dba-76b6-4ced-a7fc-09e1a08cf0e1\",\"object\":\"chat.completion\",\"created\":1723855783,\"model\":\"gemma2-9b-it\",\"system_fingerprint\":\"fp_10c08bf97d\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"The meadow shimmered with the heat of the midday sun, a stage for the children's celestial performance.  A little girl, adorned with a crown of woven wildflowers, declared herself the Sun, her laughter as bright as the rays she mimicked.  A boy, draped in a sheet of shimmering blue fabric, became the vast Ocean, his voice a gentle rumble as he parted for the Sun's golden chariot.  \\n\\nThey danced and twirled, their movements echoing the ancient tale.  A giggling cluster of children, dressed in swirling greens and browns, represented the Earth, springing up from the Ocean's depths.  Another, cloaked in a patchwork of stars, became the Moon, shyly peeking from behind the Sun's radiant glow.  \\n\\nTheir voices, filled with wonder and joy, wove a tapestry of sound, a playful reimagining of the universe's birth.  The meadow, bathed in sunlight and laughter, became a microcosm of creation itself, a testament to the boundless imagination of childhood. \\n\\n\\n\"},\"logprobs\":null,\"finish_reason\":\"stop\"}]}"),
+    messages = json(
+        "[{\"role\":\"system\",\"content\":\"You are a helpful and creative assistant that writes text based on user's given context. Please keep it short and concise within 3 paragraphs.\"},{\"role\":\"user\",\"content\":\"A group of children, dressed as celestial beings, enact a playful retelling of a creation myth in a sun-drenched meadow, their laughter mingling with the chirping of birds.\"}]"
+    ),
+    result = json(
+        "{\"id\":\"chatcmpl-60756dba-76b6-4ced-a7fc-09e1a08cf0e1\",\"object\":\"chat.completion\",\"created\":1723855783,\"model\":\"gemma2-9b-it\",\"system_fingerprint\":\"fp_10c08bf97d\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"The meadow shimmered with the heat of the midday sun, a stage for the children's celestial performance.  A little girl, adorned with a crown of woven wildflowers, declared herself the Sun, her laughter as bright as the rays she mimicked.  A boy, draped in a sheet of shimmering blue fabric, became the vast Ocean, his voice a gentle rumble as he parted for the Sun's golden chariot.  \\n\\nThey danced and twirled, their movements echoing the ancient tale.  A giggling cluster of children, dressed in swirling greens and browns, represented the Earth, springing up from the Ocean's depths.  Another, cloaked in a patchwork of stars, became the Moon, shyly peeking from behind the Sun's radiant glow.  \\n\\nTheir voices, filled with wonder and joy, wove a tapestry of sound, a playful reimagining of the universe's birth.  The meadow, bathed in sunlight and laughter, became a microcosm of creation itself, a testament to the boundless imagination of childhood. \\n\\n\\n\"},\"logprobs\":null,\"finish_reason\":\"stop\"}]}"
+    ),
     seed = 60,
     model = "gemma2-9b-it",
     provider = "groq",
-    raw = json("{\"UID\":7849,\"messages\":[{\"role\":\"system\",\"content\":\"You are a helpful and creative assistant that writes text based on user's given context. Please keep it short and concise within 3 paragraphs.\"},{\"role\":\"user\",\"content\":\"A group of children, dressed as celestial beings, enact a playful retelling of a creation myth in a sun-drenched meadow, their laughter mingling with the chirping of birds.\"}],\"result\":{\"id\":\"chatcmpl-60756dba-76b6-4ced-a7fc-09e1a08cf0e1\",\"object\":\"chat.completion\",\"created\":1723855783,\"model\":\"gemma2-9b-it\",\"system_fingerprint\":\"fp_10c08bf97d\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"The meadow shimmered with the heat of the midday sun, a stage for the children's celestial performance.  A little girl, adorned with a crown of woven wildflowers, declared herself the Sun, her laughter as bright as the rays she mimicked.  A boy, draped in a sheet of shimmering blue fabric, became the vast Ocean, his voice a gentle rumble as he parted for the Sun's golden chariot.  \\n\\nThey danced and twirled, their movements echoing the ancient tale.  A giggling cluster of children, dressed in swirling greens and browns, represented the Earth, springing up from the Ocean's depths.  Another, cloaked in a patchwork of stars, became the Moon, shyly peeking from behind the Sun's radiant glow.  \\n\\nTheir voices, filled with wonder and joy, wove a tapestry of sound, a playful reimagining of the universe's birth.  The meadow, bathed in sunlight and laughter, became a microcosm of creation itself, a testament to the boundless imagination of childhood. \\n\\n\\n\"},\"logprobs\":null,\"finish_reason\":\"stop\"}],\"x_groq\":{\"id\":\"req_01j5ewzh73fedv41zwp1enraz8\",\"usage\":{\"queue_time\":0.022429141,\"prompt_tokens\":80,\"prompt_time\":0.004283779,\"completion_tokens\":214,\"completion_time\":0.439186595,\"total_tokens\":294,\"total_time\":0.443470374}},\"scout\":{\"provider\":\"groq\",\"model\":\"gemma2-9b-it\"}},\"tps\":0.02119331742243437,\"ttft\":9795,\"seed\":60,\"created_at\":{\"$date\":\"2024-08-17T00:49:44.851Z\"}}")
+    // raw = json(
+    //    "{\"UID\":7849,\"messages\":[{\"role\":\"system\",\"content\":\"You are a helpful and creative assistant that writes text based on user's given context. Please keep it short and concise within 3 paragraphs.\"},{\"role\":\"user\",\"content\":\"A group of children, dressed as celestial beings, enact a playful retelling of a creation myth in a sun-drenched meadow, their laughter mingling with the chirping of birds.\"}],\"result\":{\"id\":\"chatcmpl-60756dba-76b6-4ced-a7fc-09e1a08cf0e1\",\"object\":\"chat.completion\",\"created\":1723855783,\"model\":\"gemma2-9b-it\",\"system_fingerprint\":\"fp_10c08bf97d\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"The meadow shimmered with the heat of the midday sun, a stage for the children's celestial performance.  A little girl, adorned with a crown of woven wildflowers, declared herself the Sun, her laughter as bright as the rays she mimicked.  A boy, draped in a sheet of shimmering blue fabric, became the vast Ocean, his voice a gentle rumble as he parted for the Sun's golden chariot.  \\n\\nThey danced and twirled, their movements echoing the ancient tale.  A giggling cluster of children, dressed in swirling greens and browns, represented the Earth, springing up from the Ocean's depths.  Another, cloaked in a patchwork of stars, became the Moon, shyly peeking from behind the Sun's radiant glow.  \\n\\nTheir voices, filled with wonder and joy, wove a tapestry of sound, a playful reimagining of the universe's birth.  The meadow, bathed in sunlight and laughter, became a microcosm of creation itself, a testament to the boundless imagination of childhood. \\n\\n\\n\"},\"logprobs\":null,\"finish_reason\":\"stop\"}],\"x_groq\":{\"id\":\"req_01j5ewzh73fedv41zwp1enraz8\",\"usage\":{\"queue_time\":0.022429141,\"prompt_tokens\":80,\"prompt_time\":0.004283779,\"completion_tokens\":214,\"completion_time\":0.439186595,\"total_tokens\":294,\"total_time\":0.443470374}},\"scout\":{\"provider\":\"groq\",\"model\":\"gemma2-9b-it\"}},\"tps\":0.02119331742243437,\"ttft\":9795,\"seed\":60,\"created_at\":{\"$date\":\"2024-08-17T00:49:44.851Z\"}}"
+    //)
 );
 
 function test_validate_user() {
@@ -47,7 +53,7 @@ function test_add_prompt() {
                 seed = prompt.seed,
                 model = prompt.model,
                 provider = prompt.provider,
-                raw = prompt.raw
+                // raw = prompt.raw
             )
         )
         .sign(o_kp)
@@ -57,10 +63,12 @@ function test_add_prompt() {
     val prompt_histories = get_prompt_histories(
         start_time = -1,
         end_time = latest_time(),
+        pointer = 0,
         n_prompts = 10
     );
-    assert_equals(prompt_histories.size(), 1);
-    val p = prompt_histories[0];
+    var prompts = prompt_histories.prompts;
+    assert_equals(prompts.size(), 1);
+    val p = prompts[0];
     assert_equals(p.prompt_id, prompt_id);
     assert_equals(p.UID, prompt.UID);
     assert_equals(gtv.from_json(p.result).hash(), gtv.from_json(prompt.result).hash());
@@ -74,10 +82,11 @@ function test_add_prompt() {
 
     val prompt_history_by_id = get_prompt_histories_by_uid(
         UID = prompt.UID,
-        n_prompts = 10
+        n_prompts = 10,
+        pointer = 0
     );
-    assert_equals(prompt_history_by_id.size(), 1);
-    val p2 = prompt_history_by_id[0];
+    assert_equals(prompt_history_by_id.prompts.size(), 1);
+    val p2 = prompt_history_by_id.prompts[0];
     assert_equals(p2.prompt_id, prompt_id);
 }
 
@@ -91,7 +100,7 @@ function test_add_prompt_fail() {
                 seed = prompt.seed,
                 model = prompt.model,
                 provider = prompt.provider,
-                raw = prompt.raw
+                // raw = prompt.raw
             )
         )
         .sign(alice_kp)
@@ -109,7 +118,7 @@ function test_update_prompt() {
                 seed = prompt.seed,
                 model = prompt.model,
                 provider = prompt.provider,
-                raw = prompt.raw
+                // raw = prompt.raw
             )
         )
         .sign(o_kp)
@@ -124,7 +133,7 @@ function test_update_prompt() {
             update_prompt_history(
                 prompt_id = prompt_id,
                 result = new_result,
-                raw = new_raw
+                // raw = new_raw
             )
         )
         .sign(o_kp)
@@ -133,17 +142,17 @@ function test_update_prompt() {
         prompt_id = prompt_id
     );
     assert_equals(item.result, new_result);
-    assert_equals(item.raw, new_raw);
+    // assert_equals(item.raw, new_raw);
 
     // Update fail
     val fail_new_result = json("{\"message\": \"failed new result\"}");
-    val fail_new_raw = json("{\"message\": \"failed new raw\"}");
+    // val fail_new_raw = json("{\"message\": \"failed new raw\"}");
     val f = rell.test.tx()
         .op(
             update_prompt_history(
                 prompt_id = prompt_id,
                 result = fail_new_result,
-                raw = fail_new_raw
+                // raw = fail_new_raw
             )
         )
         .sign(alice_kp)
@@ -153,7 +162,7 @@ function test_update_prompt() {
         prompt_id = prompt_id
     );
     assert_equals(item2.result, new_result);
-    assert_equals(item2.raw, new_raw);
+    // assert_equals(item2.raw, new_raw);
 }
 
 function test_delete_prompt() {
@@ -167,19 +176,20 @@ function test_delete_prompt() {
                 seed = prompt.seed,
                 model = prompt.model,
                 provider = prompt.provider,
-                raw = prompt.raw
+                // raw = prompt.raw
             )
         )
         .sign(o_kp)
         .run();
     assert_equals(owner.prompt_id, 1);
 
-    var p = get_prompt_histories(
+    var histories = get_prompt_histories(
         start_time = -1,
         end_time = latest_time(),
+        pointer = 0,
         n_prompts = 10
     );
-    assert_equals(p.size(), 1);
+    assert_equals(histories.prompts.size(), 1);
 
     rell.test.tx()
         .op(
@@ -189,12 +199,13 @@ function test_delete_prompt() {
         )
         .sign(o_kp)
         .run();
-    p = get_prompt_histories(
+    histories = get_prompt_histories(
         start_time = -1,
         end_time = latest_time(),
+        pointer = 0,
         n_prompts = 10
     );
-    assert_equals(p.size(), 0);
+    assert_equals(histories.prompts.size(), 0);
 }
 
 function test_change_owner() {
