@@ -1,7 +1,7 @@
 module;
 
 import lib.ft4.utils.{latest_time};
-import development.{owner};
+import production.{owner};
 
 // ================================
 // Entity
@@ -15,7 +15,6 @@ entity prompt_history {
     seed: integer;
     model: text;
     provider: text;
-    // mutable raw: json;
     created_at: integer = latest_time();
 }
 
@@ -29,7 +28,6 @@ struct Prompt {
     seed: integer;
     model: text;
     provider: text;
-    // raw: json;
 }
 
 struct prompt_dto {
@@ -40,7 +38,6 @@ struct prompt_dto {
     seed: integer;
     model: text;
     provider: text;
-    // raw: json;
     created_at: integer;
 }
 
@@ -69,7 +66,6 @@ operation add_prompt_history(
 operation update_prompt_history(
     prompt_id: integer,
     result: json,
-// raw: json,
 ) {
     is_owner();
     require(
@@ -83,7 +79,6 @@ operation update_prompt_history(
     );
     update prompt_history @ { .prompt_id == prompt_id } (
         result = result,
-    //      raw = raw,
     );
 }
 
@@ -138,7 +133,6 @@ query latest_prompt_id() {
             seed = .seed,
             model = .model,
             provider = .provider,
-            // raw = .raw,
             created_at = .created_at,
         )
     ) limit 1;

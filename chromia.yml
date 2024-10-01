@@ -1,6 +1,6 @@
 blockchains:
   prompt:
-    module: development
+    module: production
 deployments:
   mainnet:
     brid: x"7E5BE539EF62E48DDA7035867E67734A70833A69D2F162C457282C319AA58AE4"
@@ -22,4 +22,3 @@ database:
 test:
   modules:
     - test
-
