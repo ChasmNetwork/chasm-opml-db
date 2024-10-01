@@ -56,7 +56,6 @@ export class ChromiaDB {
     seed,
     model,
     provider,
-    raw,
   }: {
     UID: number;
     messages: any;
@@ -64,32 +63,29 @@ export class ChromiaDB {
     seed: number;
     model: string;
     provider: string;
-    raw: any;
   }) {
     return this.client.signAndSendUniqueTransaction(
       {
         name: "add_prompt_history",
-        args: [UID, messages, result, seed, model, provider, raw],
+        args: [UID, messages, result, seed, model, provider],
       },
-      this.signatureProvider
+      this.signatureProvider,
     );
   }
 
   async updatePromptHistory({
     promptId,
     result,
-    raw,
   }: {
     promptId: number;
     result: any;
-    raw: any;
   }) {
     return this.client.signAndSendUniqueTransaction(
       {
         name: "update_prompt_history",
-        args: [promptId, result, raw],
+        args: [promptId, result],
       },
-      this.signatureProvider
+      this.signatureProvider,
     );
   }
 
@@ -99,8 +95,15 @@ export class ChromiaDB {
         name: "delete_prompt_history",
         args: [promptId],
       },
-      this.signatureProvider
+      this.signatureProvider,
     );
+  }
+
+  async getPromptCount() {
+    return this.client.query({
+      name: "get_prompt_history_count",
+      args: {},
+    });
   }
 
   async changeOwner(oldOwner: SignatureProvider, newOwner: SignatureProvider) {
@@ -127,7 +130,7 @@ export class ChromiaDB {
         name: "batch_delete_prompt_histories",
         args: [startTime, endTime],
       },
-      this.signatureProvider
+      this.signatureProvider,
     );
   }
 
@@ -144,24 +147,27 @@ export class ChromiaDB {
   async getPromptHistories(
     startTime: number,
     endTime: number,
-    nPrompts: number
+    pointer: number,
+    nPrompts: number,
   ) {
     return this.client.query({
       name: "get_prompt_histories",
       args: {
         start_time: startTime,
         end_time: endTime,
+        pointer: pointer,
         n_prompts: nPrompts,
       },
     });
   }
 
-  async getPromptHistoriesByUID(UID: number, nPrompts: number) {
+  async getPromptHistoriesByUID(UID: number, nPrompts: number, pointer = 0) {
     return this.client.query({
       name: "get_prompt_histories_by_uid",
       args: {
         UID: UID,
         n_prompts: nPrompts,
+        pointer: pointer,
       },
     });
   }

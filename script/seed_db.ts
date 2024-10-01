@@ -7,34 +7,39 @@ async function main() {
   const db = chromiaClient;
   await db.init();
 
-  const a = await db.getPromptHistories(
+  const a = (await db.getPromptHistories(
     1723911984848,
     Date.now(),
-    20
-  ) as any;
+    0,
+    20,
+  )) as any;
   console.log("db:", a);
 
   // Add to DB
   // from https://orchestrator.chasm.net/scouts/prompts?page=1&pageSize=100
   console.time("addPromptHistory");
-  let sample_data = JSON.parse(fs.readFileSync(path.join(__dirname, "./sample_data.json"), "utf-8")).data;
+  let sample_data = JSON.parse(
+    fs.readFileSync(path.join(__dirname, "./sample_data.json"), "utf-8"),
+  ).data;
   sample_data = sample_data.slice(20, 30);
   const totalItems = sample_data.length;
   for (let i = 0; i < totalItems; i++) {
     console.log(`${i}/${totalItems}`);
     const prompt = format_data(sample_data[i]);
-    const { status, statusCode, transactionRid } = await db.addPromptHistory(prompt);
+    const { status, statusCode, transactionRid } =
+      await db.addPromptHistory(prompt);
   }
   console.timeEnd("addPromptHistory");
 
   // Query
-  const res = await db.getPromptHistories(
+  const res = (await db.getPromptHistories(
     Date.now() - 5 * 60 * 1000,
     Date.now(),
-    20
-  ) as any;
+    0,
+    20,
+  )) as any;
   console.log("Count:", res.length);
-  const latestPromptId = await db.getLatestPromptId() as number;
+  const latestPromptId = (await db.getLatestPromptId()) as number;
   console.log("Latest Prompt ID:", latestPromptId);
   // await db.deletePromptHistory(latestPromptId);
 }
@@ -50,7 +55,7 @@ function format_data(data: any) {
   const seed = data.seed;
   const model = data.result.scout.model;
   const provider = data.result.scout.provider;
-  const raw = format_json(data);
+  // const raw = format_json(data);
 
   return {
     UID,
@@ -59,7 +64,6 @@ function format_data(data: any) {
     seed,
     model,
     provider,
-    raw,
   };
 }
 
