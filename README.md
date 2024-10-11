@@ -3,8 +3,8 @@ Chasm Database is powered by Chromia for data transparency layer.
 
 ## Production Details
 Cluster: [Pink](https://explorer.chromia.com/mainnet/cluster/pink)
-Dapp: [Prompt](https://explorer.chromia.com/mainnet/blockchain/BD8A4A23FD35BF0A711A8D65E94C06E651A286A412663A82AC2240416264C74D)
-BRID: `BD8A4A23FD35BF0A711A8D65E94C06E651A286A412663A82AC2240416264C74D`
+Dapp: [chasm_opml](https://explorer.chromia.com/mainnet/blockchain/A870F5744F8C4EDFE5AAD5556B1B4DA1DCC6FB53B0E8CFAB84F9155A51D1042C)
+BRID: `A870F5744F8C4EDFE5AAD5556B1B4DA1DCC6FB53B0E8CFAB84F9155A51D1042C`
 
 ## Prerequisite
 - [Installation Guide](https://docs.chromia.com/getting-started/dev-setup/cli-installation)
