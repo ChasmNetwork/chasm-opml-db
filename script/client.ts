@@ -23,7 +23,7 @@ export const localClient = new ChromiaDB({
 // export const productionClient = new ChromiaDB({
 //   clientUrl: "https://dapps0.chromaway.com:7740",
 //   blockchainRid:
-//     "BD8A4A23FD35BF0A711A8D65E94C06E651A286A412663A82AC2240416264C74D",
+//     "A870F5744F8C4EDFE5AAD5556B1B4DA1DCC6FB53B0E8CFAB84F9155A51D1042C",
 //   signatureProvider,
 // });
 
